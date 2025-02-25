@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
-import "./Navbar.css"
+import "./Navbar.css";
 
 function Navbar() {
   const [menu, setMenu] = useState("home");
@@ -20,32 +20,32 @@ function Navbar() {
         >
           Home
         </Link>
-        <Link
-          to="#explore-menu" // Specifies the target route as the home page
+        <a
+          href="#explore-menu" // Specifies the target route as the home page
           onClick={() => setMenu("menu")} // Sets the menu state to "home" when clicked
           className={menu === "menu" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
         >
           Menu
-        </Link>
-        <Link
-          to="#app-download" // Specifies the target route as the home page
+        </a>
+        <a
+          href="#app-download" // Specifies the target route as the home page
           onClick={() => setMenu("mobile-app")} // Sets the menu state to "home" when clicked
           className={menu === "mobile-app" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
         >
           Mobile App
-        </Link>
-        <Link
-          to="#footer" // Specifies the target route as the home page
+        </a>
+        <a
+          href="#footer" // Specifies the target route as the home page
           onClick={() => setMenu("contact-us")} // Sets the menu state to "home" when clicked
           className={menu === "contact-us" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
         >
           Contact Us
-        </Link>
+        </a>
       </ul>
       <div className="navbar-right">
         <img src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
-          <Link>
+          <Link to={"./cart"}>
             <img src={assets.basket_icon} alt="" />
           </Link>
           <div className="dot">10</div>
