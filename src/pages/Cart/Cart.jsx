@@ -1,12 +1,16 @@
 import React from "react";
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
-import "./Cart.css"
-import { assets } from "../../assets/assets";
+import { useNavigate } from "react-router-dom";
+import "./Cart.css";
 
 export const Cart = () => {
   const { CartItems, food_list, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
+  const navigate = useNavigate();
+  const navigateToPlaceOrder = () => {
+    navigate("/place-order");
+  };
   return (
     <div className="cart">
       <div className="cart-items">
@@ -27,9 +31,9 @@ export const Cart = () => {
                 <div className="cart-items-title cart-items-item">
                   <img src={item.image} alt="" />
                   <p>{item.name}</p>
-                  <p>Ghc{item.price}</p>
+                  <p>Gh₵{item.price}</p>
                   <p>{CartItems[item._id]}</p>
-                  <p>Ghc{CartItems[item._id] * item.price}</p>
+                  <p>Gh₵{CartItems[item._id] * item.price}</p>
                   <p onClick={() => removeFromCart(item._id)} className="cross">
                     X
                   </p>
@@ -60,7 +64,7 @@ export const Cart = () => {
               </p>
             </div>
           </div>
-          <button>Proceed to checkout</button>
+          <button onClick={() => navigateToPlaceOrder()}>Proceed to checkout</button>
         </div>
         <div className="cart-promocode">
           <div>

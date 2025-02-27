@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { StoreContext } from "../../context/StoreContext";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ setShowLogin }) {
   const [menu, setMenu] = useState("home");
+  const { getTotalCartAmount } = useContext(StoreContext);
   return (
     <div className="navbar">
       <Link to="/">
@@ -12,32 +15,31 @@ function Navbar() {
       </Link>
 
       <ul className="navbar-menu">
-        {/* Link component from react-router-dom to navigate to the home page */}
         <Link
-          to="/" // Specifies the target route as the home page
-          onClick={() => setMenu("home")} // Sets the menu state to "home" when clicked
-          className={menu === "home" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
+          to="/"
+          onClick={() => setMenu("home")}
+          className={menu === "home" ? "active" : ""}
         >
           Home
         </Link>
         <a
-          href="#explore-menu" // Specifies the target route as the home page
-          onClick={() => setMenu("menu")} // Sets the menu state to "home" when clicked
-          className={menu === "menu" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
+          href="#explore-menu"
+          onClick={() => setMenu("menu")}
+          className={menu === "menu" ? "active" : ""}
         >
           Menu
         </a>
         <a
-          href="#app-download" // Specifies the target route as the home page
-          onClick={() => setMenu("mobile-app")} // Sets the menu state to "home" when clicked
-          className={menu === "mobile-app" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
+          href="#app-download"
+          onClick={() => setMenu("mobile-app")}
+          className={menu === "mobile-app" ? "active" : ""}
         >
           Mobile App
         </a>
         <a
-          href="#footer" // Specifies the target route as the home page
-          onClick={() => setMenu("contact-us")} // Sets the menu state to "home" when clicked
-          className={menu === "contact-us" ? "active" : ""} // Applies the "active" class if the current menu state is "home"
+          href="#footer"
+          onClick={() => setMenu("contact-us")}
+          className={menu === "contact-us" ? "active" : ""}
         >
           Contact Us
         </a>
@@ -48,9 +50,9 @@ function Navbar() {
           <Link to={"./cart"}>
             <img src={assets.basket_icon} alt="" />
           </Link>
-          <div className="dot">10</div>
+          <div className={getTotalCartAmount() === 0 ? " " : "dot"}></div>
         </div>
-        <button>Sign In</button>
+        <button onClick={() => setShowLogin(true)}>Sign In</button>
       </div>
     </div>
   );
